@@ -1,4 +1,8 @@
-﻿using Algorithm.Console; 
+﻿using Algorithm.Console;
 
+var result = AlgorithmSolution.BracketIsValid("{[()]}");
+
+
+Console.WriteLine(result);
  
  

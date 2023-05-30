@@ -138,14 +138,83 @@ namespace Algorithm.Console
             string findedWord = "";
 
             foreach (var word in words)
-            { 
-                if(word.Length > maxLength) {
+            {
+                if (word.Length > maxLength)
+                {
 
                     findedWord = word;
                     maxLength = word.Length;
                 }
             }
             return (findedWord, maxLength);
+        }
+
+        public static int[] TwoSum(int[] nums, int target)
+        {
+            var array = new int[] { 0, 0 };
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var number = nums[i];
+
+                for (int j = 0; j < nums.Length; j++)
+                {
+                    if (i == j)
+                        continue;
+
+                    var temp = nums[j];
+
+                    if (number + temp == target)
+                    {
+                        array[0] = i;
+                        array[1] = j; 
+                    }
+
+
+                }
+            }
+
+            return array;
+        }
+
+
+        public static bool BracketIsValid(string s)
+        {
+            Stack<char> stack = new Stack<char>();
+
+            foreach (char c in s)
+            {
+                if (IsOpeningBracket(c))
+                {
+                    stack.Push(c);
+                }
+                else if (IsClosingBracket(c))
+                {
+                    if (stack.Count == 0 || !AreBracketsMatching(stack.Peek(), c))
+                    {
+                        return false;
+                    }
+                    stack.Pop();
+                }
+            }
+
+            return stack.Count == 0; 
+        }
+
+        private static bool IsOpeningBracket(char c)
+        {
+            return c == '(' || c == '{' || c == '[';
+        }
+
+        private static bool IsClosingBracket(char c)
+        {
+            return c == ')' || c == '}' || c == ']';
+        }
+
+        private static bool AreBracketsMatching(char opening, char closing)
+        {
+            return (opening == '(' && closing == ')') ||
+                   (opening == '{' && closing == '}') ||
+                   (opening == '[' && closing == ']');
         }
     }
 }

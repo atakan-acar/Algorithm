@@ -149,6 +149,46 @@ namespace Algorithm.Console
             return (findedWord, maxLength);
         }
 
+        //A man, a plan, a canal: Panama
+        public static bool IsPalindrome(string s)
+        {
+            string[] words = s.Split(new char[] { ' ', '.', ',', ';', ':', '?', '!' }, StringSplitOptions.RemoveEmptyEntries);
+
+            s = s.ToLower();
+            s = s.Replace(" ", "")
+                .Replace(".", "")
+                .Replace(",", "")
+                .Replace(";", "")
+                .Replace(":", "")
+                .Replace("? ", "")
+                .Replace("!", "");
+
+
+            StringBuilder builder = new StringBuilder();
+            for (int i = words.Length - 1; i != -1; i--)
+            {
+                var word = words[i].ToLower();
+
+                foreach (char c in word.Reverse())
+                {
+                    builder.Append(c);
+                } 
+            } 
+            return s.Equals(builder.ToString());
+        }
+        public static int SearchNum(int[] nums, int target)
+        {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var temp = nums[i];
+
+                if (target == temp)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
         public static int[] TwoSum(int[] nums, int target)
         {
             var array = new int[] { 0, 0 };
@@ -166,7 +206,7 @@ namespace Algorithm.Console
                     if (number + temp == target)
                     {
                         array[0] = i;
-                        array[1] = j; 
+                        array[1] = j;
                     }
 
 
@@ -197,7 +237,7 @@ namespace Algorithm.Console
                 }
             }
 
-            return stack.Count == 0; 
+            return stack.Count == 0;
         }
 
         private static bool IsOpeningBracket(char c)

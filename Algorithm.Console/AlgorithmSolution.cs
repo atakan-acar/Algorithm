@@ -152,6 +152,8 @@ namespace Algorithm.Console
         //A man, a plan, a canal: Panama
         public static bool IsPalindrome(string s)
         {
+            if (string.IsNullOrEmpty(s)) return true;
+
             string[] words = s.Split(new char[] { ' ', '.', ',', ';', ':', '?', '!' }, StringSplitOptions.RemoveEmptyEntries);
 
             s = s.ToLower();

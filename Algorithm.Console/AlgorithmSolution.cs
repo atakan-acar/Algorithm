@@ -149,6 +149,60 @@ namespace Algorithm.Console
             return (findedWord, maxLength);
         }
 
+
+        public static bool IsAnagram(string s, string t)
+        {
+            Dictionary<char, int> text1 = new Dictionary<char, int>();
+            Dictionary<char, int> text2 = new Dictionary<char, int>();
+
+            foreach (char c in s)
+            {
+                bool checkKey = text1.TryGetValue(c, out int count);
+                if (checkKey)
+                {
+                    text1[c] = count + 1;
+                }
+                else
+                {
+                    text1[c] = 1;
+                }  
+            }
+
+            foreach (char c in t)
+            {
+                bool checkKey = text2.TryGetValue(c, out int count);
+                if (checkKey)
+                {
+                    text2[c] = count + 1;
+                }
+                else
+                {
+                    text2[c] = 1;
+                }
+            }
+
+            if (text1.Count != text2.Count) return false;
+
+            foreach (var item in text1)
+            {
+                
+                bool checkText = text2.TryGetValue(item.Key, out int count);
+                if (checkText)
+                {
+                    if(item.Value == count)
+                    {
+                        continue;
+                    }
+                    return false;
+                }
+                return false;
+            }
+
+            return true;
+
+        }
+
+
         //A man, a plan, a canal: Panama
         public static bool IsPalindrome(string s)
         {
